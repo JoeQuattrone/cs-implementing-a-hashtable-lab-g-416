@@ -71,10 +71,7 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 	@Override
 	public boolean containsValue(Object target) {
 		for (MyLinearMap<K, V> map : maps) {
-			final V potentialValue  = map.values().stream().filter(value -> value.equals(target)).findFirst().orElse(null);
-			if (potentialValue != null) {
-				return true;
-			}
+			return map.values().stream().anyMatch(value -> value.equals(target));
 		}
 		return false;
 	}
