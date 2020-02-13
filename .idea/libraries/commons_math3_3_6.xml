@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="commons-math3-3.6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/javacs-lab08/lib/commons-math3-3.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javacs-lab08/lib/jcommon-1.0.23.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javacs-lab08/lib/jfreechart-1.0.19.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javacs-lab08/lib/servlet.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

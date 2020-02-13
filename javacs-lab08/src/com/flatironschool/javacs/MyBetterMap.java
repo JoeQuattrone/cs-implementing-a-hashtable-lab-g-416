@@ -3,12 +3,7 @@
  */
 package com.flatironschool.javacs;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Implementation of a Map using a collection of MyLinearMap, and
@@ -23,7 +18,7 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 	
 	// MyBetterMap uses a collection of MyLinearMap
 	protected List<MyLinearMap<K, V>> maps;
-	
+
 	/**
 	 * Initialize the map with 2 sub-maps.
 	 * 
@@ -38,9 +33,9 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 	 * @param k
 	 */
 	protected void makeMaps(int k) {
-		maps = new ArrayList<MyLinearMap<K, V>>(k);
+		maps = new ArrayList<>(k);
 		for (int i=0; i<k; i++) {
-			maps.add(new MyLinearMap<K, V>());
+			maps.add(new MyLinearMap<>());
 		}
 	}
 		
@@ -65,15 +60,22 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 
 	@Override
 	public boolean containsKey(Object target) {
-		// to find a key, we only have to search one map
-        // TODO: fill this in.
+		for (MyLinearMap<K, V> map : maps) {
+			if (map.get(target) != null) {
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean containsValue(Object target) {
-		// to find a value, we have to search all maps
-        // TODO: fill this in.
+		for (MyLinearMap<K, V> map : maps) {
+			final V potentialValue  = map.values().stream().filter(value -> value.equals(target)).findFirst().orElse(null);
+			if (potentialValue != null) {
+				return true;
+			}
+		}
 		return false;
 	}
 
