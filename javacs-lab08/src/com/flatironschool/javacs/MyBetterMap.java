@@ -60,18 +60,16 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 
 	@Override
 	public boolean containsKey(Object target) {
-		for (MyLinearMap<K, V> map : maps) {
-			if (map.get(target) != null) {
-				return true;
-			}
-		}
-		return false;
+		MyLinearMap<K, V> map = chooseMap(target);
+		return map.containsKey(target);
 	}
 
 	@Override
 	public boolean containsValue(Object target) {
 		for (MyLinearMap<K, V> map : maps) {
-			return map.values().stream().anyMatch(value -> value.equals(target));
+			if (map.values().stream().anyMatch(value -> value.equals(target)) == true) {
+				return true;
+			}
 		}
 		return false;
 	}

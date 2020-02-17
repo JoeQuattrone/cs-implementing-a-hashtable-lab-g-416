@@ -23,9 +23,9 @@ public class MyHashMap<K, V> extends MyBetterMap<K, V> implements Map<K, V> {
 	@Override
 	public V put(K key, V value) {
 		V oldValue = super.put(key, value);
-		
+
 		//System.out.println("Put " + key + " in " + map + " size now " + map.size());
-		
+
 		// check if the number of elements per map exceeds the threshold
 		if (size() > maps.size() * FACTOR) {
 			rehash();
@@ -40,8 +40,18 @@ public class MyHashMap<K, V> extends MyBetterMap<K, V> implements Map<K, V> {
 	 * 
 	 */
 	protected void rehash() {
-        // TODO: fill this in.
-        throw new UnsupportedOperationException();
+		// save old maps
+       List<MyLinearMap<K, V>> oldMaps = maps;
+
+       // make new collection of maps with double size
+       makeMaps(maps.size() * 2);
+
+       //add old map entrys to new map
+       for (MyLinearMap<K, V> oldMap : oldMaps) {
+       	  for (Map.Entry<K, V> entry : oldMap.getEntries()) {
+       	  	put(entry.getKey(), entry.getValue());
+		  }
+	   }
 	}
 
 	/**
